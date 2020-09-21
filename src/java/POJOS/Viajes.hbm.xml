@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 21-mar-2020 9:41:28 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOS.Viajes" table="viajes" catalog="viajes" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="horarios" class="POJOS.Horarios" fetch="select">
+            <column name="idHorario" not-null="true" />
+        </many-to-one>
+        <property name="dia" type="date">
+            <column name="dia" length="10" not-null="true" />
+        </property>
+        <property name="plazas" type="int">
+            <column name="plazas" not-null="true" />
+        </property>
+        <set name="compras" table="compra" inverse="true" lazy="true" fetch="select" cascade="all">
+            <key>
+                <column name="idViaje" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.Compra" />
+        </set>
+    </class>
+</hibernate-mapping>

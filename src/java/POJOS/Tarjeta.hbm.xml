@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 21-mar-2020 9:41:28 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOS.Tarjeta" table="tarjeta" catalog="viajes" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="cliente" class="POJOS.Cliente" fetch="select" cascade="all">
+            <column name="idCliente" not-null="true" />
+        </many-to-one>
+        <property name="tipo" type="string">
+            <column name="tipo" length="20" not-null="true" />
+        </property>
+        <property name="num" type="binary">
+            <column name="num" not-null="true" unique="true"
+                   read="AES_DECRYPT(num,'Yamato')"
+                   write="AES_ENCRYPT(?,'Yamato')"
+            />
+        </property>
+        <property name="caducidad" type="date">
+            <column name="caducidad" length="10" not-null="true" />
+        </property>
+        <property name="cvv" type="int">
+            <column name="CVV" not-null="true" />
+        </property>
+        <set name="compras" table="compra" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idTarjeta" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.Compra" />
+        </set>
+    </class>
+</hibernate-mapping>

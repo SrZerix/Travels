@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 21-mar-2020 9:41:28 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOS.Comprabackup" table="comprabackup" catalog="viajes" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="tarjetabackup" class="POJOS.Tarjetabackup" fetch="select" cascade="all">
+            <column name="idTarjeta" not-null="true" />
+        </many-to-one>
+        <many-to-one name="viajesbackup" class="POJOS.Viajesbackup" fetch="select" cascade="save-update">
+            <column name="idViaje" not-null="true" />
+        </many-to-one>
+        <property name="fechaPago" type="date">
+            <column name="fechaPago" length="10" not-null="true" />
+        </property>
+        <property name="importeCompra" type="double">
+            <column name="importeCompra" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="numViajeros" type="int">
+            <column name="numViajeros" not-null="true" />
+        </property>
+        <property name="localizador" type="string">
+            <column name="localizador" length="50" not-null="true" unique="true" />
+        </property>
+        <property name="fechaBaja" type="date">
+            <column name="fechaBaja" length="10" not-null="true" />
+        </property>
+        <set name="ocupacionbackups" table="ocupacionbackup" inverse="true" lazy="true" fetch="select" cascade="save-update">
+            <key>
+                <column name="idCompra" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.Ocupacionbackup" />
+        </set>
+    </class>
+</hibernate-mapping>

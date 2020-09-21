@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 21-mar-2020 9:41:28 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOS.Parametros" table="parametros" catalog="viajes" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="user" type="string">
+            <column name="user" length="50" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="50" not-null="true" />
+        </property>
+        <property name="empresa" type="string">
+            <column name="empresa" length="50" not-null="true" />
+        </property>
+        <property name="sede" type="string">
+            <column name="sede" length="50" not-null="true" />
+        </property>
+        <property name="cif" type="string">
+            <column name="CIF" length="50" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
