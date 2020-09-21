@@ -1,0 +1,14 @@
+VIAJES
+
+ALBACETE -> VALENCIA | 11:45:00 / 13:45:00
+
+VALENCIA -> ALBACETE| 10:00:00 / 12:00:00
+
+
+ADMINISTRADOR
+
+user: root pass:12345
+
+SQL
+
+user: root pass:12345
